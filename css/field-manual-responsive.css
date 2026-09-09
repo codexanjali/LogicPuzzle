@@ -1,0 +1,55 @@
+/* ==========================================================================
+   field-manual-responsive.css — breakpoint refinements
+   (mobile-first defaults live in the other sheets; this file layers on
+   overrides for narrow viewports and a few large-viewport comfort tweaks)
+   ========================================================================== */
+
+/* Small phones ------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .sheet { padding-inline: var(--sp-3); }
+
+  h1 { font-size: var(--step-4); }
+
+  .hero__actions .btn,
+  .result-actions .btn,
+  .modal__actions .btn { width: 100%; justify-content: center; }
+  .hero__actions, .result-actions, .modal__actions { flex-direction: column; }
+
+  .entry {
+    grid-template-columns: auto auto 1fr;
+    grid-template-rows: auto auto;
+  }
+  .entry__action { grid-column: 1 / -1; justify-content: flex-end; margin-top: var(--sp-2); }
+
+  .game-shell__bar { flex-direction: column; align-items: flex-start; }
+  .game-shell__readouts { width: 100%; justify-content: space-between; }
+
+  .sudoku-grid { grid-template-columns: repeat(9, minmax(22px, 32px)); }
+  .memory-grid { grid-template-columns: repeat(4, minmax(40px, 56px)); }
+  .sliding-grid { grid-template-columns: repeat(4, minmax(40px, 56px)); }
+  .sequence-grid { grid-template-columns: repeat(2, minmax(64px, 92px)); }
+
+  .stat-table th:nth-child(n+4),
+  .stat-table td:nth-child(n+4) { display: none; }
+
+  .result-stats { grid-template-columns: 1fr; }
+  .summary-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Tablets ------------------------------------------------------------------ */
+@media (min-width: 640px) and (max-width: 980px) {
+  .game-shell__stage { grid-template-columns: 1fr; }
+  .controls-panel { flex-direction: row; flex-wrap: wrap; }
+  .controls-panel > * { flex: 1 1 220px; }
+}
+
+/* Large desktop -------------------------------------------------------------- */
+@media (min-width: 1400px) {
+  .sheet { max-width: 1360px; }
+}
+
+/* Print / static-plate export (bonus: keeps the manual aesthetic on paper) */
+@media print {
+  body { background: #fff; color: #111; }
+  .masthead, .colophon, .btn { display: none; }
+}

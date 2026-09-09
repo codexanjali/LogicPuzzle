@@ -1,0 +1,215 @@
+/* ==========================================================================
+   LOGIC PUZZLE ARENA — "THE FIELD MANUAL"
+   field-manual.css — tokens, reset, typography, grid, layout primitives
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+/* --------------------------------------------------------------------------
+   1. TOKENS — "The Field Manual", light mode only
+   Warm ivory paper, dark charcoal ink, deep maroon as the signature mark.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Core colors — as specified */
+  --c-ivory:        #F4EFE3;
+  --c-paper:        #EAE1D1;
+  --c-deep-maroon:  #5A1725;
+  --c-dark-maroon:  #3D0D18;
+  --c-charcoal:     #241F1D;
+  --c-muted-taupe:  #A99D8C;
+  --c-border:       #C9BDAA;
+
+  /* Surfaces */
+  --bg:            var(--c-ivory);   /* warm ivory / aged paper */
+  --bg-raised:     var(--c-paper);   /* parchment — secondary surface */
+  --bg-inset:      #DED2BC;          /* darker parchment — insets, board cells */
+
+  /* Ink */
+  --ink:           var(--c-charcoal); /* very dark charcoal */
+  --ink-soft:      #4C453D;           /* charcoal, softened for body copy */
+  --ink-mute:      var(--c-muted-taupe); /* dusty beige-grey — disabled / muted */
+
+  /* Signature maroon system */
+  --accent:        var(--c-deep-maroon);  /* deep maroon — the visual signature */
+  --accent-strong: var(--c-dark-maroon);  /* dark maroon — hover/pressed, high emphasis */
+  --accent-soft:   #7C4E4C;               /* muted burgundy — secondary accent */
+  --accent-wash:   rgba(90, 23, 37, 0.09);
+
+  /* Borders */
+  --line:          var(--c-border);   /* warm taupe / soft brown */
+  --line-dim:      rgba(130, 108, 78, 0.32);
+  --line-faint:    rgba(130, 108, 78, 0.14);
+
+  /* States — kept inside the restrained family */
+  --success:       #5B6A45;   /* dusty olive — reads as an approval stamp, not a UI green */
+  --success-wash:  rgba(91, 106, 69, 0.12);
+  --error:         var(--c-dark-maroon);  /* conflicts/errors use the darker maroon — no bright red */
+  --error-wash:    rgba(61, 13, 24, 0.11);
+
+  /* Type */
+  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body:    'Inter', 'Segoe UI', sans-serif;
+  --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
+
+  /* Scale (major third-ish, hand tuned) */
+  --step--1: clamp(0.78rem, 0.75rem + 0.15vw, 0.85rem);
+  --step-0:  clamp(0.95rem, 0.92rem + 0.15vw, 1rem);
+  --step-1:  clamp(1.15rem, 1.08rem + 0.35vw, 1.3rem);
+  --step-2:  clamp(1.4rem, 1.28rem + 0.6vw, 1.7rem);
+  --step-3:  clamp(1.85rem, 1.6rem + 1.2vw, 2.4rem);
+  --step-4:  clamp(2.4rem, 2rem + 2vw, 3.4rem);
+  --step-5:  clamp(3rem, 2.4rem + 3vw, 4.6rem);
+
+  /* Spacing (8px baseline) */
+  --sp-1: 0.4rem;
+  --sp-2: 0.8rem;
+  --sp-3: 1.2rem;
+  --sp-4: 1.6rem;
+  --sp-5: 2.4rem;
+  --sp-6: 3.2rem;
+  --sp-7: 4.8rem;
+  --sp-8: 6.4rem;
+
+  --radius: 2px;
+  --grid-unit: 8px;
+
+  color-scheme: light;
+}
+
+/* --------------------------------------------------------------------------
+   3. RESET
+   -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, figcaption, blockquote { margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+img, svg { display: block; max-width: 100%; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { background: none; border: none; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. BASE
+   -------------------------------------------------------------------------- */
+body {
+  background:
+    linear-gradient(var(--line-faint) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(90deg, var(--line-faint) 1px, transparent 1px) 0 0 / 32px 32px,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"),
+    var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: var(--step-5); }
+h2 { font-size: var(--step-3); }
+h3 { font-size: var(--step-2); }
+h4 { font-size: var(--step-1); }
+
+p { max-width: 62ch; color: var(--ink-soft); }
+
+::selection { background: var(--accent); color: var(--bg-inset); }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   5. TECHNICAL / MONO UTILITIES
+   -------------------------------------------------------------------------- */
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+
+.spec-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-mute);
+  letter-spacing: 0.08em;
+}
+
+/* --------------------------------------------------------------------------
+   6. LAYOUT PRIMITIVES
+   -------------------------------------------------------------------------- */
+.sheet {
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: var(--sp-5);
+}
+
+.rule {
+  border: none;
+  border-top: 1px solid var(--line-dim);
+  margin: var(--sp-5) 0;
+}
+
+.rule--heavy { border-top-width: 2px; border-color: var(--accent); }
+
+.grid-frame {
+  position: relative;
+  border: 1px solid var(--line-dim);
+}
+
+/* Corner tick marks — engineering drawing motif */
+.ticked {
+  position: relative;
+}
+.ticked::before, .ticked::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--accent);
+  border-style: solid;
+  opacity: 0.8;
+}
+.ticked::before {
+  top: -1px; left: -1px;
+  border-width: 1px 0 0 1px;
+}
+.ticked::after {
+  bottom: -1px; right: -1px;
+  border-width: 0 1px 1px 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--accent);
+  color: var(--bg-inset);
+  padding: var(--sp-2) var(--sp-3);
+  z-index: 100;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+}
+.skip-link:focus { left: var(--sp-2); top: var(--sp-2); }
