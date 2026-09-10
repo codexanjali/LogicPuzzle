@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Resume — Anjali Mishra</title>
+<style>
+  :root{
+    --navy:#001F54;
+    --blue:#2E5AAC;
+    --gold:#FFD700;
+    --line:#E5E9EF;
+    --bg:#F4F6F9;
+    --ink:#222;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    padding:48px 20px;
+  }
+  .page{
+    max-width:760px;
+    margin:0 auto;
+    background:#fff;
+    border:1px solid var(--line);
+    border-top:6px solid var(--navy);
+    padding:44px 50px;
+  }
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:12px;
+    padding-bottom:22px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:28px;
+  }
+  header h1{
+    margin:0;
+    font-size:30px;
+    color:var(--navy);
+  }
+  header p.role{
+    margin:4px 0 0;
+    color:var(--blue);
+    font-size:15px;
+    font-weight:600;
+  }
+  .contact{
+    font-size:13px;
+    color:#555;
+    text-align:right;
+    line-height:1.7;
+  }
+  .contact a{color:var(--blue); text-decoration:none;}
+  section{margin-bottom:26px;}
+  section h2{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:var(--navy);
+    margin:0 0 12px;
+    padding-bottom:6px;
+    border-bottom:2px solid var(--gold);
+    display:inline-block;
+  }
+  .entry{margin-bottom:14px;}
+  .entry-head{
+    display:flex;
+    justify-content:space-between;
+    font-size:15px;
+    font-weight:700;
+    color:var(--navy);
+  }
+  .entry-sub{
+    font-size:13px;
+    color:#666;
+    margin:2px 0 6px;
+  }
+  .entry p{
+    margin:0;
+    font-size:14px;
+    color:#3a3f47;
+    line-height:1.55;
+  }
+  ul.plain{
+    margin:0;
+    padding-left:18px;
+    font-size:14px;
+    color:#3a3f47;
+    line-height:1.6;
+  }
+  .pills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .pills span{
+    font-size:12.5px;
+    background:#EEF2F6;
+    color:var(--navy);
+    padding:5px 12px;
+    border-radius:3px;
+    font-weight:600;
+  }
+  table.edu-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+  }
+  .edu-table th, .edu-table td{
+    border:1px solid var(--line);
+    padding:8px 10px;
+    text-align:left;
+  }
+  .edu-table th{
+    background:var(--bg);
+    color:var(--navy);
+  }
+  .project-links a{
+    color:var(--blue);
+    font-size:13px;
+    text-decoration:none;
+    font-weight:700;
+  }
+  .project-links a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div>
+        <h1>Anjali Mishra</h1>
+        <p class="role">AI &amp; Cyber Security Analyst</p>
+      </div>
+      <div class="contact">
+        anjalimishra.mtms@gmail.com<br>
+        <a href="https://github.com/codexanjali" target="_blank" rel="noopener">github.com/codexanjali</a><br>
+        Add your city, state
+      </div>
+    </header>
+
+    <section>
+      <h2>Profile</h2>
+      <p style="font-size:14px; line-height:1.6; margin:0; color:#3a3f47;">
+        Machine learning and full-stack developer who enjoys turning data into practical,
+        interactive applications — from fraud and fake-news detection to predictive models.
+        Interested in applying AI to real-world problems, building end-to-end projects that
+        pair a trained model with a clean, usable interface.
+      </p>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <table class="edu-table">
+        <thead>
+          <tr>
+            <th>Qualification</th>
+            <th>Institute</th>
+            <th>Year</th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>B.Tech (CSE — Cybersecurity)</td>
+            <td>GLA University</td>
+            <td>2nd Year</td>
+            <td>7.39</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <div class="pills">
+        <span>Python</span>
+        <span>JavaScript</span>
+        <span>Flask</span>
+        <span>React.js</span>
+        <span>Machine Learning (Scikit-learn)</span>
+        <span>Random Forest</span>
+        <span>Linear Regression</span>
+        <span>HTML &amp; CSS</span>
+        <span>Jupyter Notebook</span>
+        <span>Git &amp; GitHub</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+
+      <div class="entry">
+        <div class="entry-head"><span>Fake News Detection</span></div>
+        <p>AI-powered fake news detection web app built with Flask and Machine Learning — analyze news text, view results, and track history through an interactive interface.</p>
+        <p class="project-links" style="margin-top:6px;">
+          <a href="https://github.com/codexanjali/Fake-News-Detection-ML-Model" target="_blank" rel="noopener">View on GitHub →</a>
+        </p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head"><span>Financial Fraud Detection</span></div>
+        <p>Fraud detection system using a Random Forest model served through a Flask REST API, with a React frontend for exploring predictions.</p>
+        <p class="project-links" style="margin-top:6px;">
+          <a href="https://github.com/codexanjali/Financial_Fraud_Detection" target="_blank" rel="noopener">View on GitHub →</a>
+        </p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head"><span>Stock Price Predictor</span></div>
+        <p>Machine learning project that predicts stock prices using Linear Regression, built with Python and presented through a clean web interface.</p>
+        <p class="project-links" style="margin-top:6px;">
+          <a href="https://github.com/codexanjali/Stock-Price-Predictor" target="_blank" rel="noopener">View on GitHub →</a>
+        </p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
